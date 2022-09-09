@@ -1,0 +1,117 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @upper on FIELD_DEFINITION
+
+type Authentication {
+  """The email of user"""
+  email: String!
+
+  """The password of user"""
+  password: String!
+
+  """The avatar image url of user"""
+  avatar: String
+
+  """The roles of user"""
+  roles: [Role!]!
+}
+
+"""The Role of user"""
+enum Role {
+  ADMIN
+  USER
+}
+
+type GeneralInformation {
+  """The surname and middle name of user"""
+  surnameAndMiddleName: String!
+
+  """The name of user"""
+  name: String!
+
+  """The gender of user"""
+  gender: Gender!
+
+  """The day of birth of user"""
+  dayOfBirth: DateTime
+
+  """The address of user"""
+  address: String
+
+  """The phone number of user"""
+  phoneNumber: String!
+}
+
+"""The gender of user"""
+enum Gender {
+  MR
+  MRS
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type User {
+  _id: String!
+
+  """The authentication information of user"""
+  authentication: Authentication!
+
+  """The general information of user"""
+  generalInformation: GeneralInformation!
+}
+
+type Query {
+  users: [User!]!
+  user: User!
+}
+
+type Mutation {
+  createUser(userInput: CreateUserDto!): User!
+}
+
+input CreateUserDto {
+  """The authentication information of user"""
+  authentication: CreateAuthenticationDto!
+
+  """The general information of user"""
+  generalInformation: CreateGeneralInformationDto!
+}
+
+input CreateAuthenticationDto {
+  """The email of user"""
+  email: String!
+
+  """The password of user"""
+  password: String!
+
+  """The avatar image url of user"""
+  avatar: String
+
+  """The roles of user"""
+  roles: [Role!]!
+}
+
+input CreateGeneralInformationDto {
+  """The surname and middle name of user"""
+  surnameAndMiddleName: String!
+
+  """The name of user"""
+  name: String!
+
+  """The gender of user"""
+  gender: String!
+
+  """The day of birth of user"""
+  dayOfBirth: DateTime
+
+  """The address of user"""
+  address: String
+
+  """The phone number of user"""
+  phoneNumber: String!
+}
