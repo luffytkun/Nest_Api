@@ -9,6 +9,8 @@ import {
 } from './general-information.model';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
+import { Role } from './roles.enum';
+
 @Schema()
 @ObjectType('User')
 export class User {
@@ -35,6 +37,10 @@ export class User {
   })
   generalInformation: GeneralInformation;
 
+
+  @Prop({ type: [String], required: true })
+  @Field(() => [Role], { description: 'The roles of user' })
+  roles?: Role[];
 }
 
 export type UserDocument = User & Document;

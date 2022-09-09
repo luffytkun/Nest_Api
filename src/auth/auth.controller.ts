@@ -6,8 +6,8 @@ import { Request } from 'express';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { UserService } from 'src/user/user.service';
 import { Role } from 'src/user/models/roles.enum';
-import { RolesGuard } from './guards/roles.guard';
-import { HasRoles } from './strategies/roles.strategy';
+import { HasRoles } from './decorator/role.decorator';
+import { RolesGuard } from './guards/role.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -29,11 +29,17 @@ export class AuthController {
     };
   }
 
-  @HasRoles(Role.ADMIN)
-  @UseGuards(JwtAuthGuard, RolesGuard)
+ 
+  @UseGuards(JwtAuthGuard)
   @Get('me')
   getMe(@Req() req: Request) {
     return this.userService.findOneById((req.user as User)._id);
   }
 
+  @HasRoles(Role.Admin)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('admin')
+  onlyAdmin(@Req() req: Request) {
+    return req.user;
+  }
 }

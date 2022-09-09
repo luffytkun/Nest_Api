@@ -20,11 +20,6 @@ export class Authentication {
     nullable: true,
   })
   avatar?: string;
-
-  @Prop({ type: [String], default: Role.USER })
-  @Field(() => [Role], {description: 'The roles of user', })
-  roles?: Role[];
-  
 }
 
 export const AuthenticationSchema =

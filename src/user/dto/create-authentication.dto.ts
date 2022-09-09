@@ -31,7 +31,5 @@ export class CreateAuthenticationDto {
   })
   avatar?: string;
 
-  @IsEnum(Role)
-  @Field(() => [Role], { description: 'The roles of user'})
-  roles: Role[];
+  
 }

@@ -2,6 +2,8 @@ import { Field, InputType } from '@nestjs/graphql';
 
 import { CreateAuthenticationDto } from './create-authentication.dto';
 import { CreateGeneralInformationDto } from './create-general-information.dto';
+import { IsEnum } from 'class-validator';
+import { Role } from '../models/roles.enum';
 import { Type } from 'class-transformer';
 
 @InputType()
@@ -17,4 +19,8 @@ export class CreateUserDto {
     description: 'The general information of user',
   })
   generalInformation: CreateGeneralInformationDto;
+
+  @IsEnum(Role)
+  @Field(() => [Role], { description: 'The roles of user'})
+  roles: Role[];
 }

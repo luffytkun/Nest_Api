@@ -13,15 +13,6 @@ type Authentication {
 
   """The avatar image url of user"""
   avatar: String
-
-  """The roles of user"""
-  roles: [Role!]!
-}
-
-"""The Role of user"""
-enum Role {
-  ADMIN
-  USER
 }
 
 type GeneralInformation {
@@ -63,6 +54,15 @@ type User {
 
   """The general information of user"""
   generalInformation: GeneralInformation!
+
+  """The roles of user"""
+  roles: [Role!]!
+}
+
+"""The Role of user"""
+enum Role {
+  Admin
+  User
 }
 
 type Query {
@@ -80,6 +80,9 @@ input CreateUserDto {
 
   """The general information of user"""
   generalInformation: CreateGeneralInformationDto!
+
+  """The roles of user"""
+  roles: [Role!]!
 }
 
 input CreateAuthenticationDto {
@@ -91,9 +94,6 @@ input CreateAuthenticationDto {
 
   """The avatar image url of user"""
   avatar: String
-
-  """The roles of user"""
-  roles: [Role!]!
 }
 
 input CreateGeneralInformationDto {
