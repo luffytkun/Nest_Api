@@ -29,14 +29,13 @@ export class AuthController {
     };
   }
 
- 
   @UseGuards(JwtAuthGuard)
   @Get('me')
   getMe(@Req() req: Request) {
     return this.userService.findOneById((req.user as User)._id);
   }
 
-  @HasRoles(Role.Admin)
+  @HasRoles(Role.User)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('admin')
   onlyAdmin(@Req() req: Request) {

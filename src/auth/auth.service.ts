@@ -11,10 +11,14 @@ export class AuthService {
   constructor(
     private readonly usersService: UserService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async signIn(user: User) {
-    const payload = { email: user.authentication.email, sub: user._id };
+    const payload = {
+      email: user.authentication.email,
+      sub: user._id,
+      roles: user.roles
+    };
 
     return {
       accessToken: this.jwtService.sign(payload),
