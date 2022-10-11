@@ -35,7 +35,7 @@ export class AuthController {
     return this.userService.findOneById((req.user as User)._id);
   }
 
-  @HasRoles(Role.User)
+  @HasRoles(Role.Admin)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('admin')
   onlyAdmin(@Req() req: Request) {

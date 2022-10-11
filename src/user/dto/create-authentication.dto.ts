@@ -1,14 +1,11 @@
 import { Field, InputType } from '@nestjs/graphql';
 import {
   IsEmail,
-  IsEnum,
   IsOptional,
   IsString,
   IsUrl,
   MinLength,
 } from 'class-validator';
-
-import { Role } from '../models/roles.enum';
 
 @InputType()
 export class CreateAuthenticationDto {

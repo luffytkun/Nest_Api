@@ -46,22 +46,12 @@ export class UserService {
     return existingUser;
   }
 
-  // async findOneById(_id: MongooseSchema.Types.ObjectId) {
-  //   const existingUser = await this.userModel.findOne({ _id }).populate('cart');
-
-  //   if (!existingUser) {
-  //     throw new NotFoundException(`User _id ${_id} not found`);
-  //   }
-
-  //   return this.sanitizeUser(existingUser);
-  // }
-  //create new User
   async create(userInput: CreateUserDto) {
     const newUser = new this.userModel(userInput);
     
     await newUser.save();
 
-    return this.findOneById(newUser._id);
+    return this.findOneByEmail(newUser.authentication.email);
   }
 
   // Return user object without password

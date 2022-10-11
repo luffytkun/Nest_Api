@@ -1,6 +1,6 @@
-import { Module, forwardRef } from '@nestjs/common';
 import { User, UserSchema } from './models/user.model';
 
+import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserResolver } from './user.resolver';
 import { UserService } from './user.service';

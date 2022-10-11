@@ -6,7 +6,6 @@ import { EmailExistGuard } from './guards/email-exist.guard';
 import { User } from './models/user.model';
 import { UserService } from './user.service';
 import { CurrentUser } from 'src/auth/current-user.decorator';
-import { Role } from './models/roles.enum';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Resolver()
